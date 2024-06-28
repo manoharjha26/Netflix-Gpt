@@ -1,11 +1,19 @@
 # Nerflix-GPT
-<<<<<<< HEAD
-=======
 
 - creare react app
 - config tailwind css
 - Header
-- Login Form
+- Routing of App
+- Login Form 
+- Sign up Form
+- Form Validation
+- useRef Hook
+- Firebase setup
+- Deploying our the app production
+- create signup User Account
+- Implement sign In user Api
+- created redux store with userSlice
+- 
 
 
 # features
