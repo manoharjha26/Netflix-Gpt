@@ -4,13 +4,17 @@ import { checkValidData } from "../utils/validate.js";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
     const [isSignInForm, setIsSignInForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
 
+    const name = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
 
@@ -32,7 +36,11 @@ const Login = () => {
             )
                 .then((userCredential) => {
                     const user = userCredential.user;
+                    updateProfile(user, {
+                        displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/78554118?s=400&u=bb7020233038e9714010cd112ee935a583e4021b&v=4"
+                    })
                     console.log(user);
+                    navigate("/browse")
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -49,6 +57,7 @@ const Login = () => {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log(user);
+                    navigate("/browse")
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -81,6 +90,7 @@ const Login = () => {
 
                 {!isSignInForm && (
                     <input
+                        ref={name}
                         type="name"
                         placeholder="Full Name"
                         className="p-4 my-4 w-full bg-gray-700 "
